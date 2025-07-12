@@ -41,11 +41,13 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import pkg from "cors";
 import cookieParser from 'cookie-parser';
+import connectDB from './config/mongodb.js';
 
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
+connectDB();
 
 app.use(express.json());
 app.use(pkg());
@@ -77,5 +79,6 @@ io.on("connection", function (socket) {
 app.get('/', function (req, res) {
     res.render('index');
 });
+
 
 server.listen(PORT, () => console.log(`server running on port ${PORT}`));
