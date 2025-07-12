@@ -3,6 +3,9 @@ const app = express();
 const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
+const dotenv = require('dotenv');
+
+const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 const io = socketio(server);
@@ -27,4 +30,4 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-server.listen(3000, () => console.log("Server running on http://localhost:3000"));
+server.listen(PORT, () => console.log(`server running on port ${PORT}`));
